@@ -1,0 +1,27 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+/* @import url('https://cdn.jsdelivr.net/gh/noistommy/frog-ui-css@main/dist/css/gcloud.min.css?reload=true'); */
+@import url('https://cdn.jsdelivr.net/gh/noistommy/frog-ui-css@main/dist/css/beui.min.css?reload=true');
+
+
+body {
+  font-size: 14px;
+  margin: 0;
+  min-width: 320px;
+  min-height: 100svh;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+
+/* nt-cabinet */
+nt-cabinet .header {
+  position: relative;
+}
+nt-cabinet .contact {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
