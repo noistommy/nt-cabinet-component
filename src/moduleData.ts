@@ -10,20 +10,20 @@ export const PROFILE = {
   email: 'mailto:noistommy@gmail.com'
 }
 
-export const DS = { logo: Frog, name: 'Frog UI', link: 'https://frog-ui-css.vercel.app', current: false }
+export const DS = { logo: Frog, title: 'Frog UI', link: 'https://frog-ui-css.vercel.app', name: 'frog-ui' }
 export const BEUI = [
-  { logo: VBeui, name: 'BEUI - Vue', link: 'https://beui.vercel.app', current: false },
-  { logo: RBeui, name: 'BEUI - React', link: 'https://react-be-ui.vercel.app', current: false }
+  { logo: VBeui, title: 'BEUI - Vue', link: 'https://beui.vercel.app', name: 'beui-vue' },
+  { logo: RBeui, title: 'BEUI - React', link: 'https://react-be-ui.vercel.app', name: 'beui-react' }
 ]
 export const REACT_MODULES = [
-  { logo: NTLogo, name: 'NT Modal', link: 'https://noistommy.github.io/react-nt-modal', current: false },
-  { logo: NTLogo, name: 'NT Toast', link: 'https://noistommy.github.io/react-nt-toast', current: false },
-  { logo: NTLogo, name: 'NT Tooltip', link: 'https://noistommy.github.io/nt-tooltip', current: false },
-  { logo: Souple, name: 'Souple', link: 'https://noistommy.github.io/souple', current: false }
+  { logo: NTLogo, title: 'NT Modal', link: 'https://noistommy.github.io/react-nt-modal', name: 'react-nt-modal' },
+  { logo: NTLogo, title: 'NT Toast', link: 'https://noistommy.github.io/react-nt-toast', name: 'react-nt-toast' },
+  { logo: NTLogo, title: 'NT Tooltip', link: 'https://noistommy.github.io/nt-tooltip', name: 'nt-tooltip' },
+  { logo: Souple, title: 'Souple', link: 'https://noistommy.github.io/souple', name: 'souple' }
 ]
 export const VUE_MODULES = [
-  { logo: NTLogo, name: 'NT Modal', link: 'https://noistommy.github.io/vue-nt-modal', current: true },
-  { logo: NTLogo, name: 'NT Toast', link: 'https://noistommy.github.io/vue-nt-toast', current: false },
-  { logo: NTLogo, name: 'NT Tooltip', link: 'https://noistommy.github.io/vue-nt-tooltip', current: false },
+  { logo: NTLogo, title: 'NT Modal', link: 'https://noistommy.github.io/vue-nt-modal', name: 'vue-nt-modal' },
+  { logo: NTLogo, title: 'NT Toast', link: 'https://noistommy.github.io/vue-nt-toast', name: 'vue-nt-toast' },
+  { logo: NTLogo, title: 'NT Tooltip', link: 'https://noistommy.github.io/vue-nt-tooltip', name: 'vue-nt-tooltip' },
 ]
 

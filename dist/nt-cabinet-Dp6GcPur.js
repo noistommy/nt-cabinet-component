@@ -7,62 +7,62 @@ var a = "data:image/svg+xml,%3csvg%20width='60'%20height='60'%20viewBox='0%200%2
 	email: "mailto:noistommy@gmail.com"
 }, d = {
 	logo: o,
-	name: "Frog UI",
+	title: "Frog UI",
 	link: "https://frog-ui-css.vercel.app",
-	current: !1
+	name: "frog-ui"
 }, f = [{
 	logo: s,
-	name: "BEUI - Vue",
+	title: "BEUI - Vue",
 	link: "https://beui.vercel.app",
-	current: !1
+	name: "beui-vue"
 }, {
 	logo: c,
-	name: "BEUI - React",
+	title: "BEUI - React",
 	link: "https://react-be-ui.vercel.app",
-	current: !1
+	name: "beui-react"
 }], p = [
 	{
 		logo: a,
-		name: "NT Modal",
+		title: "NT Modal",
 		link: "https://noistommy.github.io/react-nt-modal",
-		current: !1
+		name: "react-nt-modal"
 	},
 	{
 		logo: a,
-		name: "NT Toast",
+		title: "NT Toast",
 		link: "https://noistommy.github.io/react-nt-toast",
-		current: !1
+		name: "react-nt-toast"
 	},
 	{
 		logo: a,
-		name: "NT Tooltip",
+		title: "NT Tooltip",
 		link: "https://noistommy.github.io/nt-tooltip",
-		current: !1
+		name: "nt-tooltip"
 	},
 	{
 		logo: l,
-		name: "Souple",
+		title: "Souple",
 		link: "https://noistommy.github.io/souple",
-		current: !1
+		name: "souple"
 	}
 ], m = [
 	{
 		logo: a,
-		name: "NT Modal",
+		title: "NT Modal",
 		link: "https://noistommy.github.io/vue-nt-modal",
-		current: !0
+		name: "vue-nt-modal"
 	},
 	{
 		logo: a,
-		name: "NT Toast",
+		title: "NT Toast",
 		link: "https://noistommy.github.io/vue-nt-toast",
-		current: !1
+		name: "vue-nt-toast"
 	},
 	{
 		logo: a,
-		name: "NT Tooltip",
+		title: "NT Tooltip",
 		link: "https://noistommy.github.io/vue-nt-tooltip",
-		current: !1
+		name: "vue-nt-tooltip"
 	}
 ];
 // \0@oxc-project+runtime@0.155.0/helpers/esm/decorate.js
@@ -118,8 +118,8 @@ var _ = class extends e {
 	render() {
 		return n`
       <footer class="mt-auto text-right">
-        <hr class="ga be  hr my-10"></hr>
         <div class="wrapper" style="max-width: 780px; margin: 0 auto;">
+          <hr class="ga be  hr my-10"></hr>
           <div class="header ga be flex between">
             <div class="logo">
               <div class="ga be flex gap-1">
@@ -150,14 +150,14 @@ var _ = class extends e {
               <h5 class="header gray-txt-40">Design system</h5>
               <div class="ga-list be-list">
                 <nt-drawer 
-                  logo=${d.logo} name=${d.name} link=${d.link} .current=${d.name === this.module}
+                  logo=${d.logo} name=${d.title} link=${d.link} .current=${d.name === this.module}
                 ></nt-drawer>     
               </div>
               <h5 class="header" gray-txt-40">BEUI</h5>
               <div class="ga-list be-list">
               ${f.map((e) => n`
                 <nt-drawer 
-                  logo=${e.logo} name=${e.name} link=${e.link} .current=${e.name === this.module}
+                  logo=${e.logo} name=${e.title} link=${e.link} .current=${e.name === this.module}
                 ></nt-drawer>     
               `)}
               </div>
@@ -167,7 +167,7 @@ var _ = class extends e {
               <div class="ga-list be-list">
               ${p.map((e) => n`
                 <nt-drawer 
-                  logo=${e.logo} name=${e.name} link=${e.link} .current=${e.name === this.module}
+                  logo=${e.logo} name=${e.title} link=${e.link} .current=${e.name === this.module}
                 ></nt-drawer>     
               `)}
               </div>
@@ -177,15 +177,15 @@ var _ = class extends e {
               <div class="ga-list be-list">
               ${m.map((e) => n`
                 <nt-drawer 
-                  logo=${e.logo} name=${e.name} link=${e.link} .current=${e.name === this.module}
+                  logo=${e.logo} name=${e.title} link=${e.link} .current=${e.name === this.module}
                 ></nt-drawer>     
               `)}
               </div>
             </div>
           </div>
+          <hr className="ga be hr" />
+          ${this.copylight()}
         </div>
-        <hr className="ga be hr" />
-        ${this.copylight()}
         </footer>
     `;
 	}

@@ -5,25 +5,25 @@ export declare const PROFILE: {
 };
 export declare const DS: {
     logo: string;
-    name: string;
+    title: string;
     link: string;
-    current: boolean;
+    name: string;
 };
 export declare const BEUI: {
     logo: string;
-    name: string;
+    title: string;
     link: string;
-    current: boolean;
+    name: string;
 }[];
 export declare const REACT_MODULES: {
     logo: string;
-    name: string;
+    title: string;
     link: string;
-    current: boolean;
+    name: string;
 }[];
 export declare const VUE_MODULES: {
     logo: string;
-    name: string;
+    title: string;
     link: string;
-    current: boolean;
+    name: string;
 }[];

@@ -8,7 +8,7 @@ interface ModuleItem {
   logo: string
   name: string
   link: string
-  current: boolean
+  title: string
 }
 
 /**
@@ -43,8 +43,8 @@ export class NtCabinet extends LitElement {
   render() {
     return html`
       <footer class="mt-auto text-right">
-        <hr class="ga be  hr my-10"></hr>
         <div class="wrapper" style="max-width: 780px; margin: 0 auto;">
+          <hr class="ga be  hr my-10"></hr>
           <div class="header ga be flex between">
             <div class="logo">
               <div class="ga be flex gap-1">
@@ -75,14 +75,14 @@ export class NtCabinet extends LitElement {
               <h5 class="header gray-txt-40">Design system</h5>
               <div class="ga-list be-list">
                 <nt-drawer 
-                  logo=${DS.logo} name=${DS.name} link=${DS.link} .current=${DS.name === this.module}
+                  logo=${DS.logo} name=${DS.title} link=${DS.link} .current=${DS.name === this.module}
                 ></nt-drawer>     
               </div>
               <h5 class="header" gray-txt-40">BEUI</h5>
               <div class="ga-list be-list">
               ${BEUI.map((item: ModuleItem) => html`
                 <nt-drawer 
-                  logo=${item.logo} name=${item.name} link=${item.link} .current=${item.name === this.module}
+                  logo=${item.logo} name=${item.title} link=${item.link} .current=${item.name === this.module}
                 ></nt-drawer>     
               `)}
               </div>
@@ -92,7 +92,7 @@ export class NtCabinet extends LitElement {
               <div class="ga-list be-list">
               ${REACT_MODULES.map((item: ModuleItem) => html`
                 <nt-drawer 
-                  logo=${item.logo} name=${item.name} link=${item.link} .current=${item.name === this.module}
+                  logo=${item.logo} name=${item.title} link=${item.link} .current=${item.name === this.module}
                 ></nt-drawer>     
               `)}
               </div>
@@ -102,15 +102,15 @@ export class NtCabinet extends LitElement {
               <div class="ga-list be-list">
               ${VUE_MODULES.map((item: ModuleItem) => html`
                 <nt-drawer 
-                  logo=${item.logo} name=${item.name} link=${item.link} .current=${item.name === this.module}
+                  logo=${item.logo} name=${item.title} link=${item.link} .current=${item.name === this.module}
                 ></nt-drawer>     
               `)}
               </div>
             </div>
           </div>
+          <hr className="ga be hr" />
+          ${this.copylight()}
         </div>
-        <hr className="ga be hr" />
-        ${this.copylight()}
         </footer>
     `
   }
