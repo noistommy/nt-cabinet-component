@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: "npm" # 패키지 다운로드 속도 향상을 위한 캐시 설정
+          cache: "npm"
 
       # 3. 의존성 패키지 설치
       - name: Install dependencies
@@ -29,3 +29,12 @@ jobs:
       # 4. Vite 프로젝트 빌드 (dist 폴더 생성)
       - name: Build project
         run: npm run build
+
+      # 5. 빌드 결과(dist)를 레포지토리에 커밋 & push
+      - name: Commit and push dist
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dist -f
+          git diff --staged --quiet || git commit -m "chore: build dist [skip ci]"
+          git push
