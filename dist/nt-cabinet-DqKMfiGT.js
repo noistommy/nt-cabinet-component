@@ -117,7 +117,7 @@ var _ = class extends e {
 	}
 	render() {
 		return n`
-      <footer class="mt-auto p-10 text-right">
+      <footer class="mt-auto text-right">
         <hr class="ga be  hr my-10"></hr>
         <div class="wrapper" style="max-width: 780px; margin: 0 auto;">
           <div class="header ga be flex between">
