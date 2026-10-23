@@ -13,8 +13,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lit": "^3.3.3",
-    "nt-cabinet-component": "github:noistommy/nt-cabinet-component"
+    "lit": "^3.3.3"
   },
   "devDependencies": {
     "sass": "^1.105.1",
