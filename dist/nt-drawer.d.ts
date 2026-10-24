@@ -6,7 +6,6 @@ export declare class NtDrawer extends LitElement {
     current: boolean;
     render(): TemplateResult<1>;
     createRenderRoot(): this;
-    static styles: import('lit').CSSResult[];
 }
 declare global {
     interface HTMLElementTagNameMap {
