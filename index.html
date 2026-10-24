@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="light-mode">
+<html lang="en" class="light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -9,6 +9,21 @@
     <script type="module" src="/src/nt-cabinet.ts"></script>
   </head>
   <body>
-    <nt-cabinet module="frog-ui"></nt-cabinet>
+    <div class="theme-mode p-10">
+      <div class="theme-select be-switch button ga-switch">
+        <input type="checkbox" checked="false" />
+        <span class="on">Light</span>
+        <span class="off">Dark</span>
+      </div>
+    </div>
+    <nt-cabinet module="nt-tooltip"></nt-cabinet>
   </body>
+  <script>
+    const themeBtn = document.querySelector('.theme-select');
+    themeBtn.addEventListener('click', () => {
+      const state = themeBtn.querySelector('input');
+      state.checked = !state.checked;
+      !state.checked ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark');
+    });
+  </script>
 </html>

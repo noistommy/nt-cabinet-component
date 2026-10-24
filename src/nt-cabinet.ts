@@ -33,8 +33,9 @@ export class NtCabinet extends LitElement {
     return html`
       <div class="copylight mt-4 be-tags ga-tags attached">
         <span class="ga-tag be-tag label deepblue">Copyright</span>
-        <span class="ga-tag be-tag label primary-light">© ${new Date().getFullYear()} Kim Minyoung</span>
-        <span class="ga-tag be-tag pointing left secondary">noistommy</span>
+        <span class="ga-tag be-tag pointing right deepblue-light">${new Date().getFullYear()}. Kim Minyoung</span>
+        <span class="ga-tag be-tag label secondary">noistommy</span>
+        <!-- <span class="ga-tag be-tag label">All rights reserved.</span> -->
       </div>
     `
 
