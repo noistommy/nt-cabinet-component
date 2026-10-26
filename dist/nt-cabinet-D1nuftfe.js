@@ -96,10 +96,175 @@ var h = class extends e {
 	}
 };
 m([r({ type: String })], h.prototype, "logo", void 0), m([r({ type: String })], h.prototype, "name", void 0), m([r({ type: String })], h.prototype, "link", void 0), m([r({ type: Boolean })], h.prototype, "current", void 0), h = m([n("nt-drawer")], h);
+// node_modules/@noistommy/nt-tooltip/dist/nt-tooltip.es.js
+function g(e) {
+	return e.replace(/-([a-z])/g, (e, t) => t.toUpperCase());
+}
+function _(e) {
+	let t = e.trim();
+	if (t === "true") return !0;
+	if (t === "false") return !1;
+	if (t !== "" && !isNaN(Number(t))) return Number(t);
+	if (t.startsWith("{") && t.endsWith("}") || t.startsWith("[") && t.endsWith("]")) try {
+		return JSON.parse(t);
+	} catch {
+		return t;
+	}
+	return t;
+}
+function v(e) {
+	let t = {};
+	return e && e.split(";").forEach((e) => {
+		let n = e.indexOf(":");
+		if (n === -1) return;
+		let r = e.slice(0, n).trim(), i = e.slice(n + 1);
+		if (!r || i === void 0) return;
+		let a = g(r);
+		t[a] = _(i);
+	}), t;
+}
+var y = class {
+	#e = {
+		content: "",
+		pos: "top-center",
+		invert: !0,
+		show: !1,
+		trigger: "hover",
+		selector: "nt-tooltip",
+		size: null,
+		padding: 8,
+		maxWidth: 250,
+		textAlign: "center",
+		offset: 10,
+		customClass: "",
+		external: null,
+		zIndex: null,
+		motion: "scale"
+	};
+	root;
+	options;
+	tooltip = null;
+	currenPos = null;
+	touchTimer = null;
+	longTouch = !1;
+	_show;
+	constructor(e, t = {}) {
+		this.root = e, this.options = {
+			...this.#e,
+			...t
+		}, this._show = !1, this.options.external ? this.setExternal(this.options.external) : this.#t();
+	}
+	#t() {
+		this.options.trigger === "hover" ? (this.root.addEventListener("mouseenter", this.setShow), this.root.addEventListener("mouseleave", this.setClose)) : this.options.trigger === "focus" ? (this.root.addEventListener("focusin", this.setShow), this.root.addEventListener("focusout", this.setClose)) : this.root.addEventListener("click", this.setToggle);
+	}
+	update(e) {
+		this.options = {
+			...this.options,
+			...e
+		}, this.options.external && this.setExternal(this.options.external), this._show && (this.setAttribute(), this.setPosition());
+	}
+	destroy() {
+		this.setClose(), this.options.trigger === "hover" ? (this.root.removeEventListener("mouseenter", this.setShow), this.root.removeEventListener("mouseleave", this.setClose)) : this.options.trigger === "focus" ? (this.root.removeEventListener("focusin", this.setShow), this.root.removeEventListener("focusout", this.setClose)) : this.root.removeEventListener("click", this.setToggle);
+	}
+	setShow = () => {
+		this._show || (this._show = !0, this.setTooltip());
+	};
+	setClose = () => {
+		this._show = !1, this.tooltip &&= (this.tooltip.classList.remove("show"), this.tooltip.remove(), null), window.removeEventListener("scroll", this.setPosition, !0), window.removeEventListener("resize", this.setPosition);
+	};
+	setToggle = () => {
+		this._show ? this.setClose() : this.setShow();
+	};
+	setExternal(e) {
+		e === "show" ? this.setShow() : this.setClose();
+	}
+	setTooltip() {
+		this.tooltip && this._show && this.setClose(), this.tooltip = document.createElement("div"), this.setAttribute(), document.body.append(this.tooltip), this.setPosition(), window.addEventListener("scroll", this.setPosition, !0), window.addEventListener("resize", this.setPosition), requestAnimationFrame(() => {
+			this.tooltip?.classList.add("show");
+		});
+	}
+	setAttribute() {
+		this.tooltip && (this.tooltip.innerHTML = this.options.content ? this.options.content : this.root.querySelector("[nt-target]")?.innerHTML ?? "", this.tooltip.classList.add(...[
+			this.options.selector,
+			this.options.invert ? "invert" : null,
+			this.options.size,
+			this.options.motion,
+			this.options.customClass ? `${this.options.customClass}`.trim() : null
+		].filter(Boolean)), this.tooltip.style.maxWidth = this.options.maxWidth + "px", this.tooltip.style.paddingBlock = this.options.padding + "px", this.tooltip.style.paddingInline = Number(this.options.padding) * 1.5 + "px", this.tooltip.style.textAlign = this.options.textAlign, this.options.zIndex && (this.tooltip.style.zIndex = this.options.zIndex));
+	}
+	setPosition = () => {
+		if (!this._show || !this.tooltip) return;
+		let e = window.innerWidth, t = window.innerHeight, [n, r] = this.options.pos.split("-") || ["top", "center"], i = this.root.getBoundingClientRect(), a = this.tooltip.getBoundingClientRect(), o = Number(this.options.offset), s = i.top - a.height - o, c = i.bottom + o, l = i.left - (a.width + o), u = i.right + o;
+		if (n === "top" && s < 0 && (n = "bottom"), n === "bottom" && t - (c + a.height) < 0 && (n = "top"), n === "left" && l < 0 && (n = "right"), n === "right" && e - (u + a.width) < 0 && (n = "left"), n === "top" || n === "bottom") {
+			this.tooltip.style.top = n === "top" ? s + "px" : c + "px";
+			let t = i.left + i.width / 2 - a.width / 2, o = i.right - a.width;
+			i.width >= a.width ? r = "center" : (r === "center" && t < 0 && (r = "start"), e - i.right - (a.width / 2 - i.width / 2) < 0 && (r = "end")), this.tooltip.style.left = r === "center" ? t + "px" : r === "end" ? 0 + o + "px" : 0 + i.left + "px";
+		} else {
+			this.tooltip.style.left = n === "left" ? `${l}px` : `${u}px`;
+			let t = i.top + i.height / 2 - a.height / 2, o = i.bottom - a.height;
+			i.height >= a.height ? r = "center" : (r === "center" && t < 0 && (r = "start"), e - i.right - (a.width / 2 - i.width / 2) < 0 && (r = "end")), this.tooltip.style.top = r === "center" ? t + "px" : r === "end" ? o + "px" : i.top + "px";
+		}
+		this.currenPos && this.tooltip.classList.remove(this.currenPos), this.currenPos = `${n}-${r}`, this.tooltip.classList.add(this.currenPos);
+	};
+	get show() {
+		return this._show;
+	}
+	set show(e) {
+		e ? this.setShow() : this.setClose();
+	}
+}, b = /* @__PURE__ */ new Map(), x = "nt-tooltip", S = null;
+function C() {
+	k(), w(document.body), O(), console.log(`${b.size}개의 툴팁 활성`);
+}
+function w(e) {
+	if (e.nodeType !== 1) return;
+	let t = e;
+	t.hasAttribute(x) && T(t), t.querySelectorAll(`[${x}]`).forEach(T);
+}
+function T(e) {
+	let t = new y(e, v(e.getAttribute(x) ?? ""));
+	b.set(e, t);
+}
+function E(e) {
+	let t = v(e.getAttribute(x) ?? ""), n = b.get(e);
+	n ? typeof n.update == "function" ? n.update(t) : (n.destroy?.(), T(e)) : T(e);
+}
+function D(e) {
+	let t = b.get(e);
+	t && (t.destroy?.(), b.delete(e));
+}
+function O() {
+	S = new MutationObserver((e) => {
+		for (let t of e) if (t.type === "attributes" && t.attributeName === x) {
+			let e = t.target;
+			e.hasAttribute(x) ? E(e) : D(e);
+		} else t.type === "childList" && (t.addedNodes.forEach((e) => {
+			e.nodeType === 1 && w(e);
+		}), t.removedNodes.forEach((e) => {
+			if (e.nodeType !== 1) return;
+			let t = e;
+			D(t), t.querySelectorAll?.(`[${x}]`).forEach(D);
+		}));
+	}), S.observe(document.body, {
+		attributes: !0,
+		attributeFilter: [x],
+		childList: !0,
+		subtree: !0
+	});
+}
+function k() {
+	b.forEach((e) => e.destroy?.()), b.clear(), S?.disconnect(), S = null;
+}
 // src/nt-cabinet.ts
-var g = class extends e {
+var A = class extends e {
 	constructor(...e) {
 		super(...e), this.module = "";
+	}
+	connectedCallback() {
+		super.connectedCallback(), C();
+	}
+	disconnectedCallback() {
+		super.disconnectedCallback(), k();
 	}
 	copylight() {
 		return t`
@@ -125,15 +290,15 @@ var g = class extends e {
             </div>
             <div class="contact">
               <div class="ga-buttons be-buttons">
-                <div class="ga-button be-button compact icon">
+                <div class="ga-button be-button compact icon" nt-tooltip="content: Send E-mail; size: small; padding: 4;">
                   <i class="xi-mail"></i>
                   <a class="link" href="${l.email}" target="_blank"></a>
                 </div>
-                <div class="ga-button be-button compact icon">
+                <div class="ga-button be-button compact icon" nt-tooltip="content: Visit Linkedin; size: small; padding: 4;">
                   <i class="xi-linkedin"></i>
                   <a class="link" href="${l.linkedin}" target="_blank"></a>
                 </div>
-                <div class="ga-button be-button compact icon">
+                <div class="ga-button be-button compact icon" nt-tooltip="content: Visit Homepage; size: small; padding: 4;">
                   <i class="xi-home"></i>
                   <a class="link" href= "${l.homepage}" target="_blank"></a>
                 </div>
@@ -149,7 +314,7 @@ var g = class extends e {
                   logo=${u.logo} name=${u.title} link=${u.link} .current=${u.name === this.module}
                 ></nt-drawer>     
               </div>
-              <h5 class="header" gray-txt-40">BEUI</h5>
+              <h5 class="header gray-txt-40">BEUI</h5>
               <div class="ga-list be-list">
               ${d.map((e) => t`
                 <nt-drawer 
@@ -189,5 +354,5 @@ var g = class extends e {
 		return this;
 	}
 };
-m([r({ type: String })], g.prototype, "module", void 0), g = m([n("nt-cabinet")], g);
-export { g as t };
+m([r({ type: String })], A.prototype, "module", void 0), A = m([n("nt-cabinet")], A);
+export { A as t };

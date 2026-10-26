@@ -4,6 +4,9 @@ import { DS, PROFILE, VUE_MODULES, REACT_MODULES, BEUI} from './moduleData.ts'
 import NTLogo from './img/nt-profile.svg'
 import './nt-drawer.ts'
 
+import { initTooltip, clearTooltip } from '@noistommy/nt-tooltip'
+import '@noistommy/nt-tooltip/nt-tooltip.css'
+
 interface ModuleItem {
   logo: string
   name: string
@@ -23,6 +26,16 @@ export class NtCabinet extends LitElement {
   /**
    * The number of times the button has been clicked.
    */
+  connectedCallback() {
+    super.connectedCallback()
+    initTooltip()
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback()
+    clearTooltip()
+    
+  }
 
   @property({
     type: String,
@@ -55,15 +68,15 @@ export class NtCabinet extends LitElement {
             </div>
             <div class="contact">
               <div class="ga-buttons be-buttons">
-                <div class="ga-button be-button compact icon">
+                <div class="ga-button be-button compact icon" nt-tooltip="content: Send E-mail; size: small; padding: 4;">
                   <i class="xi-mail"></i>
                   <a class="link" href="${PROFILE.email}" target="_blank"></a>
                 </div>
-                <div class="ga-button be-button compact icon">
+                <div class="ga-button be-button compact icon" nt-tooltip="content: Visit Linkedin; size: small; padding: 4;">
                   <i class="xi-linkedin"></i>
                   <a class="link" href="${PROFILE.linkedin}" target="_blank"></a>
                 </div>
-                <div class="ga-button be-button compact icon">
+                <div class="ga-button be-button compact icon" nt-tooltip="content: Visit Homepage; size: small; padding: 4;">
                   <i class="xi-home"></i>
                   <a class="link" href= "${PROFILE.homepage}" target="_blank"></a>
                 </div>
@@ -79,7 +92,7 @@ export class NtCabinet extends LitElement {
                   logo=${DS.logo} name=${DS.title} link=${DS.link} .current=${DS.name === this.module}
                 ></nt-drawer>     
               </div>
-              <h5 class="header" gray-txt-40">BEUI</h5>
+              <h5 class="header gray-txt-40">BEUI</h5>
               <div class="ga-list be-list">
               ${BEUI.map((item: ModuleItem) => html`
                 <nt-drawer 

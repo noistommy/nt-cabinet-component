@@ -34,5 +34,8 @@
     "typescript": "~6.0.2",
     "vite": "^8.3.5",
     "vite-plugin-dts": "^5.1.2"
+  },
+  "dependencies": {
+    "@noistommy/nt-tooltip": "^1.1.0"
   }
 }

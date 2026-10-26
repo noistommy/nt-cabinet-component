@@ -9,6 +9,8 @@ export declare class NtCabinet extends LitElement {
     /**
      * The number of times the button has been clicked.
      */
+    connectedCallback(): void;
+    disconnectedCallback(): void;
     module: string;
     copylight(): import('lit-html').TemplateResult<1>;
     render(): import('lit-html').TemplateResult<1>;
